@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PulsoSismedica - Red Social & Trivias</title>
+  <!-- Íconos de RemixIcon para interfaz moderna tipo Instagram/TikTok -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css">
+  <script src="./js/app.js" defer></script>
+</head>
+<body>
+
+  <!-- ================= 1. PANTALLA DE LOGIN ================= -->
+  <section id="login-screen" class="login-container">
+    <div class="login-card">
+      <div class="brand-logo">
+        <i class="ri-flashlight-fill"></i>
+        <h1>Pulso<span>Sismedica</em></span></h1>
+      </div>
+      <p class="login-subtitle">Conecta, comparte contenido y compite en tiempo real.</p>
+      
+      <form id="login-form">
+        <div class="input-group">
+          <label for="username">Usuario</label>
+          <input type="text" id="username" placeholder="Ej: alex_dev" value="alex_dev" required>
+        </div>
+        <div class="input-group">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" placeholder="••••••••" value="123456" required>
+        </div>
+        <button type="submit" class="btn-primary">Iniciar Sesión</button>
+      </form>
+      <span class="demo-hint">Prototipo: Haz clic en "Iniciar Sesión" con los datos precargados.</span>
+    </div>
+  </section>
+
+  <!-- ================= 2. CONTENEDOR PRINCIPAL DE LA APP ================= -->
+  <div id="app-container" class="app-layout hidden">
+    
+    <!-- Navegación Lateral (Escritorio) / Barra Inferior (Móvil) -->
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <i class="ri-flashlight-fill logo-icon"></i>
+        <span class="logo-text">Pulse<span>Quiz</span></span>
+      </div>
+
+      <ul class="nav-links">
+        <li>
+          <button class="nav-btn active" data-target="feed-view">
+            <i class="ri-home-5-line"></i>
+            <span>Inicio</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-btn" data-target="trivia-view">
+            <i class="ri-gamepad-line"></i>
+            <span>Trivias</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-btn" data-target="ranking-view">
+            <i class="ri-trophy-line"></i>
+            <span>Ranking</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-btn" data-target="profile-view">
+            <i class="ri-user-3-line"></i>
+            <span>Perfil</span>
+          </button>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="mini-user">
+          <img id="nav-avatar" src="" alt="Avatar">
+          <div class="mini-user-info">
+            <strong id="nav-username">@usuario</strong>
+            <span id="nav-points">0 pts</span>
+          </div>
+        </div>
+        <button id="logout-btn" title="Cerrar sesión"><i class="ri-logout-box-r-line"></i></button>
+      </div>
+    </nav>
+
+    <!-- Área Principal Dinámica -->
+    <main class="main-content">
+
+      <!-- VISTA A: FEED PRINCIPAL -->
+      <section id="feed-view" class="view active-view">
+        <header class="view-header">
+          <h2>Explorar Feed</h2>
+        </header>
+        <div id="feed-container" class="feed-list">
+          <!-- Renderizado dinámico mediante JS -->
+        </div>
+      </section>
+
+      <!-- VISTA B: TRIVIAS ESTILO KAHOOT -->
+      <section id="trivia-view" class="view">
+        <header class="view-header">
+          <h2>Desafío Rápido</h2>
+          <div class="score-pill">Tus Puntos: <strong id="trivia-user-score">0</strong></div>
+        </header>
+
+        <div class="kahoot-container">
+          <!-- Cabecera de progreso de la pregunta -->
+          <div class="quiz-status">
+            <span id="question-counter">Pregunta 1 de 4</span>
+            <span id="question-points-badge">+100 pts</span>
+          </div>
+          <div class="progress-bar">
+            <div id="quiz-progress" class="progress-fill"></div>
+          </div>
+
+          <!-- Caja de pregunta -->
+          <div class="question-box">
+            <h3 id="question-text">Cargando pregunta...</h3>
+          </div>
+
+          <!-- Cuadrícula 2x2 estilo Kahoot -->
+          <div id="answers-grid" class="kahoot-grid">
+            <!-- Botones generados por JS -->
+          </div>
+
+          <!-- Feedback tras responder -->
+          <div id="quiz-feedback" class="quiz-feedback hidden">
+            <p id="feedback-message"></p>
+            <button id="next-question-btn" class="btn-primary">Siguiente Pregunta</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISTA C: RANKING / LEADERBOARD -->
+      <section id="ranking-view" class="view">
+        <header class="view-header">
+          <h2>Tabla de Clasificación</h2>
+        </header>
+        <div class="ranking-card">
+          <div class="ranking-header-row">
+            <span>Posición</span>
+            <span>Usuario</span>
+            <span>Puntaje</span>
+          </div>
+          <div id="ranking-list" class="ranking-body">
+            <!-- Renderizado dinámico por JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- VISTA D: PERFIL DE USUARIO -->
+      <section id="profile-view" class="view">
+        <div class="profile-header-card">
+          <img id="profile-avatar" src="" alt="Foto de perfil" class="profile-lg-avatar">
+          <div class="profile-details">
+            <h2 id="profile-name">Nombre Usuario</h2>
+            <span id="profile-handle" class="handle">@username</span>
+            <p id="profile-bio" class="bio">Desarrollador Full Stack & entusiasta de las trivias tecnológicas.</p>
+            
+            <div class="profile-stats">
+              <div class="stat-item">
+                <strong id="stat-posts">0</strong>
+                <span>Publicaciones</span>
+              </div>
+              <div class="stat-item">
+                <strong id="stat-followers">1.4k</strong>
+                <span>Seguidores</span>
+              </div>
+              <div class="stat-item highlight">
+                <strong id="stat-points">0</strong>
+                <span>Puntos Quiz</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="section-subtitle">Mis Publicaciones</h3>
+        <div id="profile-posts-grid" class="profile-grid">
+          <!-- Miniaturas renderizadas por JS -->
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

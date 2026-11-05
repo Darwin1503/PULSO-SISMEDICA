@@ -1,0 +1,714 @@
+/* ================= VARIABLES Y RESET ================= */
+:root {
+  --bg-main: #0f172a;
+  --bg-card: #1e293b;
+  --bg-input: #334155;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --accent: #ec4899;
+  --border: #334155;
+  
+  /* Colores oficiales estilo Kahoot */
+  --kahoot-red: #e21b3c;
+  --kahoot-blue: #1368ce;
+  --kahoot-yellow: #d89e00;
+  --kahoot-green: #26890c;
+
+  --radius: 14px;
+  --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ================= 1. LOGIN ================= */
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1.5rem;
+  background: radial-gradient(circle at top right, #312e81, var(--bg-main) 60%);
+}
+
+.login-card {
+  background: var(--bg-card);
+  padding: 2.5rem;
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 400px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.brand-logo h1 {
+  color: var(--text-main);
+  font-size: 1.8rem;
+}
+
+.brand-logo span {
+  color: var(--accent);
+}
+
+.login-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.8rem;
+}
+
+.input-group {
+  text-align: left;
+  margin-bottom: 1.2rem;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+  color: var(--text-muted);
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-input);
+  color: var(--text-main);
+  font-size: 1rem;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 0.85rem;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-primary:hover {
+  opacity: 0.92;
+}
+
+.demo-hint {
+  display: block;
+  margin-top: 1.2rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* ================= 2. LAYOUT PRINCIPAL ================= */
+.app-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+}
+
+/* Barra lateral */
+.sidebar {
+  background: var(--bg-card);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 0 0.8rem 1.5rem;
+}
+
+.logo-icon {
+  color: var(--primary);
+  font-size: 1.8rem;
+}
+
+.logo-text span {
+  color: var(--accent);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.nav-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  font-weight: 500;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-btn i {
+  font-size: 1.35rem;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--text-main);
+}
+
+.nav-btn.active i {
+  color: var(--primary);
+}
+
+.sidebar-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.mini-user {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.mini-user img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.mini-user-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+}
+
+.mini-user-info span {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+#logout-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+#logout-btn:hover {
+  color: #ef4444;
+}
+
+/* Contenido de vistas */
+.main-content {
+  padding: 2rem 1.5rem;
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.view {
+  display: none;
+  animation: fadeIn 0.25s ease;
+}
+
+.view.active-view {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.view-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+/* ================= 3. TARJETAS DEL FEED ================= */
+.feed-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.post-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem;
+}
+
+.post-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary);
+}
+
+.post-user-info strong {
+  display: block;
+  font-size: 0.95rem;
+}
+
+.post-user-info span {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.post-media-wrapper {
+  width: 100%;
+  max-height: 520px;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.post-media-wrapper img,
+.post-media-wrapper video {
+  width: 100%;
+  max-height: 520px;
+  object-fit: cover;
+}
+
+.post-body {
+  padding: 1rem;
+}
+
+.post-actions {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.action-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+
+.action-btn span {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.action-btn.liked i {
+  color: #ef4444;
+}
+
+.post-caption {
+  font-size: 0.92rem;
+  line-height: 1.45;
+  margin-bottom: 1rem;
+}
+
+.comments-section {
+  border-top: 1px solid var(--border);
+  padding-top: 0.8rem;
+}
+
+.comment-item {
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+  color: #cbd5e1;
+}
+
+.comment-item strong {
+  color: var(--text-main);
+  margin-right: 0.4rem;
+}
+
+.comment-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.comment-form input {
+  flex: 1;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  color: var(--text-main);
+  font-size: 0.85rem;
+}
+
+.comment-form button {
+  background: var(--primary);
+  border: none;
+  color: white;
+  padding: 0 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+/* ================= 4. TRIVIA ESTILO KAHOOT ================= */
+.score-pill {
+  background: rgba(236, 72, 153, 0.15);
+  border: 1px solid var(--accent);
+  color: var(--text-main);
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+.kahoot-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.quiz-status {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+  height: 8px;
+  background: var(--bg-input);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  width: 25%;
+  transition: width 0.3s ease;
+}
+
+.question-box {
+  background: var(--bg-main);
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border);
+}
+
+.question-box h3 {
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+.kahoot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.kahoot-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 1.4rem 1rem;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  text-align: left;
+  transition: transform 0.15s, filter 0.2s;
+  box-shadow: 0 5px 0 rgba(0,0,0,0.3);
+}
+
+.kahoot-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.kahoot-btn:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.kahoot-btn.correct-choice {
+  outline: 4px solid #fff;
+  opacity: 1 !important;
+}
+
+.k-red { background-color: var(--kahoot-red); }
+.k-blue { background-color: var(--kahoot-blue); }
+.k-yellow { background-color: var(--kahoot-yellow); }
+.k-green { background-color: var(--kahoot-green); }
+
+.quiz-feedback {
+  margin-top: 1.5rem;
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.quiz-feedback p {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+}
+
+/* ================= 5. RANKING ================= */
+.ranking-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.ranking-header-row,
+.ranking-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 110px;
+  align-items: center;
+  padding: 1rem 1.2rem;
+}
+
+.ranking-header-row {
+  background: rgba(255,255,255,0.03);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+}
+
+.ranking-row {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.ranking-row.current-user-row {
+  background: rgba(99, 102, 241, 0.15);
+}
+
+.rank-pos {
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.rank-user {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.rank-user img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.rank-points {
+  text-align: right;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* ================= 6. PERFIL ================= */
+.profile-header-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.8rem;
+  display: flex;
+  gap: 1.8rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.profile-lg-avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--primary);
+}
+
+.handle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.bio {
+  font-size: 0.92rem;
+  margin-bottom: 1.2rem;
+  color: #cbd5e1;
+}
+
+.profile-stats {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.stat-item strong {
+  display: block;
+  font-size: 1.2rem;
+}
+
+.stat-item span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.stat-item.highlight strong {
+  color: var(--accent);
+}
+
+.section-subtitle {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.grid-thumb {
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+}
+
+.grid-thumb img,
+.grid-thumb video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ================= 7. RESPONSIVE (MÓVIL & TABLET) ================= */
+@media (max-width: 768px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+    padding-bottom: 70px;
+  }
+
+  .sidebar {
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    right: 0;
+    height: 65px;
+    flex-direction: row;
+    padding: 0 0.5rem;
+    z-index: 100;
+    border-right: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .sidebar-header,
+  .sidebar-footer {
+    display: none;
+  }
+
+  .nav-links {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+  }
+
+  .nav-btn {
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.4rem;
+    font-size: 0.72rem;
+  }
+
+  .kahoot-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-header-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .profile-stats {
+    justify-content: center;
+  }
+}
